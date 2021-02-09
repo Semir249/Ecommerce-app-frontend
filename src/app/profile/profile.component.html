@@ -1,0 +1,31 @@
+<div class="profile-form">
+    <h1>
+        Your Details
+    </h1>
+    <div class="ui divider"></div>
+<form [formGroup]="profileForm" class="ui form" (ngSubmit)="editProfile()">
+    <div class="field">
+      <app-input [control]="profileForm.get('email')"
+                  label="Email" inputType="email"></app-input>
+    </div>
+    <div class="field">
+        <app-input [control]="profileForm.get('username')"
+                    label="Username" inputType="text"></app-input>
+      </div>
+      <div class="field">
+        <app-input [control]="profileForm.get('birthday')"
+                    label="Birthday" inputType="date"></app-input>
+      </div>
+      <div class="field">
+        <app-input [control]="profileForm.get('location')"
+                    label="Location" inputType="text"></app-input>
+      </div>
+      <div class="field">
+        <app-input [control]="profileForm.get('zipcode')"
+                    label="Zipcode" inputType="number"></app-input>
+      </div>
+
+      <button class="ui teal button" type="submit">Update profile</button>
+    
+</form>
+</div>

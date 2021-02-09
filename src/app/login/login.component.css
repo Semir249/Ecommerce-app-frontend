@@ -1,0 +1,42 @@
+.actions:empty{
+    display:none;
+}
+
+.actions-default{
+    display: none;
+}
+
+.actions:empty + .actions-default{
+    display: block;
+}
+
+.mod{
+    height: 50%;
+}
+
+.login-form{
+    height: 100%;
+    padding:2% 10%;
+}
+
+.submit-button{
+    text-align: center;
+}
+
+span{
+    float:right;
+    padding-top: 1%;
+}
+
+a{
+    color:teal;
+    text-decoration: underline;
+}
+
+.reset-link{
+    margin-top: 4%;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+    color:#009C95;
+}

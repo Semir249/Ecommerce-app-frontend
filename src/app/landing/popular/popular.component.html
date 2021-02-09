@@ -1,0 +1,25 @@
+<div class="popular-products">
+<ng-image-slider [images]="imageObject" 
+[imageSize]="{width: '100%', height: '48%', space: 4}"
+[infinite]="true"
+[autoSlide]="{interval: 4, stopOnHover: false}"
+[animationSpeed]="1.25"
+#nav>
+</ng-image-slider>
+<!-- <carousel class="car"
+    [width]="800" 
+    [height]="400"
+    [cellWidth]="800"
+    [autoplay]="true" 
+    [autoplayInterval]="3000" 
+    [transitionDuration]="1000" 
+    [loop]="true"
+    [dots]="true"
+    >
+<ng-container *ngFor="let image of images">
+        <div class="carousel-cell">
+            <img [src]="'http://localhost:3000/'+image" alt="image">
+        </div>
+</ng-container>
+</carousel> -->
+</div>

@@ -1,0 +1,64 @@
+
+<div class="add-product">
+    <form [formGroup]="addProductForm" class="ui form" (ngSubmit)="onMultipleSubmit()">
+        <div class="field">
+            <app-input [control]="addProductForm.get('name')"
+                        label="Product name" inputType="text"></app-input>
+        </div>
+        <div class="field">
+            <app-input [control]="addProductForm.get('price')"
+                        label="Product price" inputType="number"></app-input>
+        </div> 
+        <div class="field">
+            <app-input [control]="addProductForm.get('quantity')"
+                        label="Quantity" inputType="number"></app-input>
+        </div> 
+        <div class="field">
+            <app-input [control]="addProductForm.get('category')"
+                        label="Product category" inputType="text"></app-input>
+        </div>
+        <div class="field">
+            <app-input [control]="addProductForm.get('description')"
+                        label="Product description" controlType="textarea"></app-input>
+        </div> 
+        <div>
+            <h4>Images <span class="ui orange tiny header">(atleast 1 image is required *)</span></h4>     
+        <div class="select-image">
+          <img *ngIf="multipleImages[0]" [src]="previewImages[0]" alt="">
+          <input type="file" name="images"  formArrayName="image" (change)="selectMultipleImage($event,0)" id="a"/>
+        </div>
+        <div class="select-image">
+          <img *ngIf="multipleImages[1]" [src]="previewImages[1]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,1)" id="b"/>
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[2]" [src]="previewImages[2]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,2)" id="c" />
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[3]" [src]="previewImages[3]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,3)" id="d" />
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[4]" [src]="previewImages[4]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,4)" id="e" />
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[5]" [src]="previewImages[5]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,5)" id="f" />
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[6]" [src]="previewImages[6]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,6)" id="g" />
+          </div>
+          <div class="select-image">
+            <img *ngIf="multipleImages[7]" [src]="previewImages[7]" alt="">
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,7)" id="h" />
+          </div>
+        <br>
+    </div>
+        <div>
+          <button class="ui teal button" type="submit">Add Product</button>
+        </div>
+    </form>
+    </div>

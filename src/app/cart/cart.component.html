@@ -1,0 +1,37 @@
+<div class="cart-page">
+    <div class="cart-section" *ngIf="cart.cart.length<=0">
+        <h1>Your cart is empty</h1>
+    </div>
+<div class="cart-section" *ngIf="cart.cart.length>0">
+    <h1>Shopping Cart</h1>
+    <div class="cart-header">
+        <div class="cart-header-item" style="font-size: large;font-weight: 300;">Product Image</div>
+        <div class="cart-header-item" style="font-size: large;font-weight: 300;">Product name</div>
+        <div class="cart-header-item" style="font-size: large;font-weight: 300;">Price</div>
+        <div class="cart-header-item" style="font-size: large;font-weight: 300;">Quantity</div>
+    </div>
+    <ng-container *ngFor="let item of cart.cart; let i=index">
+        <div class="cart-item ui segment">
+            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+item.images[0]" alt="image" srcset="" class="cart-header-item">
+            <h2 class="cart-header-item">{{ item.name }}</h2>
+            <h4 class="cart-header-item">{{ item.price | currency }}</h4>
+            <div class="cart-quantity">
+                <select id="selectAmount" [(ngModel)]="selectedAmount[i]" (change)=editCart($event,i)>
+                    <option *ngFor="let num of [].constructor(item.left);let i=index;" 
+                    [ngValue]="i+1"
+                    >
+                    {{i+1}}
+                    </option>
+                </select>
+                <i class="fa fa-trash-o" style="color: red;" (click)=deleteCartItem(item._id)></i>
+        </div>
+        </div>
+    </ng-container>
+</div>
+
+<div class="total ui segment" *ngIf="total !=0 ">
+    <h2 style="text-align: center;">Total</h2>
+    <h5 style="text-align: center;">{{total | currency}}</h5>
+    <button class="ui button secondary fluid" (click)="OrderItems()">Order now</button>
+</div>
+</div>

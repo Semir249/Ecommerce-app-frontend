@@ -1,0 +1,38 @@
+<h1 class="ui horizontal divider header divide">
+    <i class="tag icon"></i>
+    Our Products
+</h1>
+<div class="products">
+    <ng-container *ngFor="let product of products.products">
+
+        <div class="cart">
+            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.images[0]" alt="image" srcset="">
+            <div class="second-part">
+                <div class="ratings">
+                <ng-container *ngFor="let star of stars;">
+                    <app-stars [starId]="star" [rating]="product.ratings"
+                    
+                    ></app-stars>
+                  </ng-container>
+                  {{product.reviews.length}} ratings
+                </div>
+                <h3><a class="product-link" [routerLink]="['/product', product._id]">{{product.name}}</a></h3>
+                <h3>{{product.price | currency}}</h3>
+                
+                    <button  class="ui teal basic button add-to-cart-icon"
+                     (click)="product.quantity>0 && addToCart(product._id)"
+                      [ngClass]="{ 'disabled' : product.quantity<=0 }">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <ng-container *ngIf="product.quantity>0">
+                            Add to cart
+                        </ng-container>
+                        <ng-container *ngIf="product.quantity<=0">
+                            Out of stock
+                        </ng-container>
+                    </button>
+                
+            </div>
+        </div>
+
+    </ng-container>
+</div>

@@ -1,0 +1,84 @@
+.header{
+    width: 90;
+    margin: 1% 2.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index: 1000;
+}
+
+.logo-div{
+    flex:0.75;
+}
+
+.search-div{
+    flex:2;
+    
+}
+
+.icons-auth{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons-auth i{
+    font-size: 160%;
+    cursor: pointer;
+    padding-left: 15%;
+}
+
+small{
+    font-size: 15px;
+}
+
+.humburger{
+    font-size: 200%;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.close-nav{
+    font-size: 120%;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.mat-drawer{
+    width: 15%;
+}
+
+.mat-drawer-container{
+    height: 100vh;
+    
+}
+
+.mat-toolbar{
+    margin-top: 12.5%;
+    font-size: large;
+    text-align: center;
+    font-weight: bold;
+    padding-left: 30%;
+}
+
+.mat-nav-list a{
+    border-bottom: 1px solid gray;
+    font-size: medium;
+    padding-left: 15%;
+    color:teal;
+}
+
+.cart-icon{
+    color: black;
+}
+
+.divide{
+    width: 90;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}

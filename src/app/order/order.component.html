@@ -1,0 +1,36 @@
+<div class="order">
+<table class="ui celled padded table">
+    <thead>
+      <tr>
+        <th>Order Number</th>
+        <th class="single line">Product information</th>
+        <th>Unit price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Status</th>
+    </tr></thead>
+    <tbody>
+        <ng-container *ngFor="let order of myOrders.orders;let i=index">
+        <tr>
+        <td style="width: 10%;">{{i+1}}</td>
+        <td style="width: 30%;">
+          <div class="product-info">
+            <a [routerLink]="['/product', order.products.productId]">{{order.products.name}}</a>
+          </div>
+          
+        </td>
+        <td class="single line">
+          {{order.products.price | currency}}
+        </td>
+        <td>
+          <div>{{order.products.quantity}}</div>
+        </td>
+        <td class="left aligned">
+          {{order.total | currency }}
+        </td>
+        <td>{{order.status}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

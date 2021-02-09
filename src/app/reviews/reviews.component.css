@@ -1,0 +1,25 @@
+.reviews{
+    width: 60%;
+    margin-left: 10%;
+}
+
+.review-doc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product {
+    text-align: center;    
+}
+
+
+
+.review{
+    flex: 2;
+    padding-left: 2%;
+}
+
+i{
+    cursor: pointer;
+}

@@ -1,0 +1,58 @@
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-toolbar color="teal">
+      Settings
+    </mat-toolbar>
+    <div class="ui divider"></div>
+    <mat-nav-list>
+      <a routerLink="/profile" mat-list-item>Profile</a>
+      <a routerLink="/change-password" mat-list-item>Change password</a>
+      <a routerLink="/review" mat-list-item>My Reviews</a>
+      <a routerLink="/orders" mat-list-item>Order history</a>
+      <a routerLink="/manage-products" mat-list-item *ngIf="admin">Manage products</a>
+      
+    </mat-nav-list>
+  </mat-drawer>
+  
+  <div class="header">
+    <ng-container *ngIf="loggedIn">
+      <i *ngIf="!sidenav" class="fa fa-bars humburger" (click)="drawer.toggle() && sidenav=!sidenav"></i>
+      <i *ngIf="sidenav" class="fa fa-close close-nav" (click)="drawer.toggle() && sidenav=!sidenav"></i>
+    </ng-container>
+    <div class="logo-div">
+      <a routerLink="/">
+        <img class="ui tiny image" src="../../../assets/images/logo.png" alt="Eshop">
+      </a>
+    </div>
+    <div class="ui fluid category search search-div">
+      <div class="ui fluid icon input">
+        <input type="text" placeholder="Search...">
+        <i class="circular search link icon"></i>
+      </div>
+    </div>
+    <div class="icons-auth">
+      
+        <i class="heart outline icon wish-icon"><small>wishlist</small></i>
+        <a routerLink="/cart" (click)="open()"><i class="shopping cart  icon cart-icon"><small>cart</small></i></a>
+        <ng-container *ngIf="loggedIn">
+          <button class="ui teal button" (click)="logout()">Logout</button>
+        </ng-container>
+        <ng-container *ngIf="!loggedIn">
+          <button class="ui teal button" (click)="modalOpen()">Login</button>
+        </ng-container>
+        <!-- <i class="user icon"></i> -->
+      
+    </div>
+  
+  </div>
+  <div class="ui divider divide"></div>
+<router-outlet></router-outlet>
+
+  <app-login *ngIf="show" (close)="modalOpen()" (loggedIn)="isLoggedIn()" (isAdmin)="isAdmin()">
+    <ng-container modalFooter>
+      <button class="ui button" (click)="modalOpen()">Close</button>
+  </ng-container>
+  </app-login>
+  
+</mat-drawer-container>

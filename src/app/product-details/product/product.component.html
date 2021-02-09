@@ -1,0 +1,96 @@
+<div class="main-div">
+    <div class="first-row">
+    <div class="img">
+        <ng-image-slider [images]="imageObject" 
+        [imageSize]="{width: '100%', height: '50%', space: 4}"
+        [autoSlide]="1"
+        #nav>
+</ng-image-slider>
+    </div>
+    
+    <div class="description">
+        <h1>{{product.product.name}}</h1>
+        <div class="ui divider"></div>
+        <div class="users-review">
+            <ng-container *ngFor="let star of stars;">
+                <app-stars [starId]="star" [rating]="product.product.ratings"
+                ></app-stars> 
+            </ng-container> <p *ngIf="product.product.reviews.length>0">{{product.product.ratings}} stars of {{product.product.reviews.length}} ratings</p>
+            <p *ngIf="product.product.reviews.length<1">No reviews for this product</p>
+        </div>
+            
+        
+        <div class="ui divider"></div>
+        <p><span>Price:</span> {{ product.product.price | currency }}</p>
+        <div class="ui divider"></div>
+        <p>
+        <span>Description:</span> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Sit enim rem provident tenetur repellendus id iusto aliquam
+        molestias doloremque vero? Quisquam porro quae incidunt non eius,
+        soluta rerum maiores recusandae!
+        </p>
+    </div>
+    <div class="add-to-cart ui segment">
+        <span>Price:</span> {{ product.product.price | currency }}
+        <div class="ui divider"></div>
+        <span>status:</span> {{ product.product.quantity <= 0 ? 'Out of stock': 'In stock'}}
+        <div class="ui divider"></div>
+        <ng-container *ngIf="product.product.quantity > 0">
+        <span>Quantity:</span> 
+            <select id="selectAmount" [(ngModel)]="selectedAmount">
+                <option *ngFor="let num of productQuantity" 
+                [ngValue]="num+1"
+                >
+                {{num+1}}
+                </option>
+            </select>
+        
+        <div class="ui divider"></div>
+        <button (click)="addToCart()" class="ui secondary button add-cart-button">Add to cart</button>
+        </ng-container>
+    </div>
+    </div>
+    <div class="reviews">
+        <h1>Reviews</h1>
+        <div class="ui divider"></div>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form">
+            <div class="rating">
+                <h3>Ratings : </h3>
+                <ng-container *ngFor="let star of stars;">
+                    <app-stars [starId]="star" [rating]="hoverState || rating"
+                    (starEnter)="onStarEnter($event)"
+                    (starLeave)="onStarLeave()"
+                    (starClicked)="onStarClicked($event)"
+                    ></app-stars>
+                  </ng-container>
+            </div>
+            <p>
+                <textarea name="comment" class="field" cols="20" rows="5" ngModel></textarea>
+            </p>
+            <input type="hidden" name="id" [(ngModel)]="product.product._id">
+            <p>
+                <button type="submit" [disabled]="!myForm.valid || rating<1" class="ui teal button">Submit</button>
+            </p>
+        </form>
+        <ng-container *ngIf="product.product.reviews.length>0">
+        <ng-container *ngFor="let review of product.product.reviews">
+            <div>
+                <h5>{{review.user}}</h5>
+                <div class="users-review">
+                <ng-container *ngFor="let star of stars;">
+                    <app-stars [starId]="star" [rating]="review.stars"
+                    ></app-stars> 
+                </ng-container> <i>{{review.stars}} star</i>
+            </div>
+            </div>
+            <div *ngIf="review.comment">
+                <p>{{review.comment}}</p>
+            </div>
+            <div class="ui divider"></div>
+        </ng-container>
+        </ng-container>
+        <ng-container *ngIf="product.product.reviews.length<=0">
+            <h4>No reviews for this product</h4>
+        </ng-container>
+    </div>
+</div>

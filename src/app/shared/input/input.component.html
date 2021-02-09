@@ -1,0 +1,37 @@
+<div>
+    <div>
+        <div class="input-login" *ngIf="controlType=='input'">
+            <h4>{{ label }}</h4>
+            <input [type]="inputType" [formControl]="control" [placeholder]="placeholder?placeholder:''" class="field">
+        </div>
+
+        <div class="field" *ngIf="controlType=='textarea'">
+            <h4>{{label}}</h4>
+            <textarea [formControl]="control"></textarea>
+          </div>
+
+    </div>
+</div>
+
+<div *ngIf="showErrors()" class="" style="display: inline-block;color: red;">
+    <small *ngIf="control.errors.required">
+        Value is required
+    </small>
+    <small *ngIf="control.errors.email">
+        Enter a valid email
+    </small>
+    <small *ngIf="control.errors.minlength">
+        value is too short. Minimum length for password should be {{ control.errors.minlength.requiredLength }}
+    </small>
+    <small *ngIf="control.errors.maxlength">
+        value to long value must be less than {{ control.errors.maxlength.requiredLength }}
+    </small>
+    <small *ngIf="control.errors.min">
+        invalid zipcode
+    </small>
+    <small *ngIf="control.errors.pattern">
+        invalid format
+    </small>
+    
+
+</div>

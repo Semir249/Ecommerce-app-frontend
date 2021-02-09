@@ -1,0 +1,11 @@
+.profile-form{
+    width: 50%;
+    margin: auto;
+    padding:2%;
+    border:1px solid teal;
+    border-radius: 20px;
+}
+
+button{
+    width: 100%;
+}

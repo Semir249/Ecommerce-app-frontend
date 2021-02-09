@@ -1,0 +1,61 @@
+<div class="reviews" *ngIf="myReviews.reviews">
+    <ng-container *ngFor="let review of myReviews.reviews;let i=index;">
+        <div class="ui segment review-doc">
+            <div class="product">
+                
+                <img class="ui small image" [src]="'https://ecommerce-app-semir.herokuapp.com/'+review.image">
+                <h5>{{review.name}}</h5>
+            </div>
+            <div class="review" *ngIf="!review.edit">
+            <h3>Ratings : {{review.stars}}</h3>
+            <p *ngIf="review.comment">{{review.comment}}</p>
+            </div>
+            <div class="review" *ngIf="review.edit">
+                <!-- <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value,i)" class="ui form">
+                    <p>
+                        <label>Ratings</label>
+                        <input type="number" name="stars" class="field" [(ngModel)]="review.stars" required>
+                    </p>
+                    <p>
+                        <textarea name="comment" class="field" cols="30" rows="10" [(ngModel)]="review.comment"></textarea>
+                    </p>
+                    <input type="hidden" name="id" [(ngModel)]="review.prodId">
+                    <input type="hidden" name="reviewId" [(ngModel)]="review._id">
+                    <p>
+                        <button type="submit" [disabled]="!myForm.valid" class="ui teal button">Submit</button>
+                    </p>
+                </form> -->
+                <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value,i)" class="ui form">
+                    <div class="rating">
+                        <h3>Ratings : </h3>
+                        <ng-container *ngFor="let star of stars;">
+                            <app-stars [starId]="star" [rating]="hoverState || rating"
+                            (starEnter)="onStarEnter($event)"
+                            (starLeave)="onStarLeave()"
+                            (starClicked)="onStarClicked($event)"
+                            ></app-stars>
+                          </ng-container>
+                    </div>
+                    <p>
+                        <textarea name="comment" class="field" cols="30" rows="10" [(ngModel)]="review.comment"></textarea>
+                    </p>
+                    <input type="hidden" name="id" [(ngModel)]="review.prodId">
+                    <input type="hidden" name="reviewId" [(ngModel)]="review._id">
+                    <p>
+                        <button type="submit" [disabled]="!myForm.valid || rating < 1" class="ui teal button">Edit Review</button>
+                        <button type="submit" (click)="review.edit=false;hoverState=0;" class="ui teal basic button">Cancel</button>
+                    </p>
+                </form>
+            </div>
+                <div *ngIf="!review.edit">
+                <i class="pencil icon edit-icon" style="color: yellowgreen;font-size: 120%;" (click)="editReview(i)"></i> Edit &nbsp;
+            
+            
+                <i class="trash icon delete-icon" style="color: red;font-size: 120%;" (click)="deleteReview(review.prodId,review._id)"></i> Delete
+            </div>
+        </div>
+    </ng-container>
+</div>
+<div *ngIf="!myReviews.reviews">
+    <h1 class="ui header">You haven't made any reviews yet</h1>
+</div>

@@ -1,0 +1,140 @@
+
+<div class="add-product">
+    <form [formGroup]="addProductForm" class="ui form" (ngSubmit)="onMultipleSubmit()">
+        <div class="field">
+            <app-input [control]="addProductForm.get('name')"
+                        label="Product name" inputType="text"></app-input>
+        </div>
+        <div class="field">
+            <app-input [control]="addProductForm.get('price')"
+                        label="Product price" inputType="number"></app-input>
+        </div> 
+        <div class="field">
+            <app-input [control]="addProductForm.get('quantity')"
+                        label="Quantity" inputType="number"></app-input>
+        </div> 
+        <div class="field">
+            <app-input [control]="addProductForm.get('category')"
+                        label="Product category" inputType="text"></app-input>
+        </div>
+        <div class="field">
+            <app-input [control]="addProductForm.get('description')"
+                        label="Product description" controlType="textarea" content="product.product.description"></app-input>
+        </div> 
+        <div>
+            <h4>Images <span class="ui orange tiny header">(atleast 1 image is required *)</span></h4>
+            <ng-container *ngFor="let item of ['a','b','c','d','e','f','g','h'];let i=index;">
+              <div class="select-image">
+                <!-- <span *ngIf="product.product.images[i] && !previewImages[i]">
+                  <img  [src]="'http://localhost:3000/'+product.product.images[i]" alt="">
+                </span> -->
+        
+                <img  *ngIf="multipleImages[i] && previewImages[i]" [src]="previewImages[i]" alt="">
+    
+            <label [for]="item" *ngIf="multipleImages[i]" class="basic ui label">Change Image</label>
+            <label [for]="item" *ngIf="!multipleImages[i]" class="basic ui label" style="margin-left: 80px;">Choose Image</label>
+              <input type="file" name="images"  formArrayName="image" (change)="selectMultipleImage($event,i)" [id]="item" style="display: none;"/>
+                <i class="trash icon delete-icon" *ngIf="multipleImages[i]" (click)="removeImage(i)">Delete</i> 
+              
+            </div>
+            </ng-container>     
+        <!-- <div class="select-image">
+            <span *ngIf="product.product.images[0] && !previewImages[0]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[0]" alt="">
+            </span>
+    
+            <img  *ngIf="multipleImages[0] && previewImages[0]" [src]="previewImages[0]" alt="">
+
+        <label for="a" *ngIf="multipleImages[0]" class="basic ui label">Change Image</label>
+        <label for="a" *ngIf="!multipleImages[0]" class="basic ui label">Choose Image</label>
+          <input type="file" name="images"  formArrayName="image" (change)="selectMultipleImage($event,0)" id="a" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[0]" (click)="removeImage(0)">Delete</i> 
+          
+        </div>
+
+
+        <div class="select-image">
+          <span *ngIf="product.product.images[1] && !previewImages[1]">
+            <img  [src]="'http://localhost:3000/'+product.product.images[1]" alt="">
+          </span>
+
+          <img  *ngIf="multipleImages[1] && previewImages[1]"[src]="previewImages[1]" alt="">
+            
+          <label for="b" *ngIf="multipleImages[1]" class="basic ui label">Change Image</label>
+          <label for="b" *ngIf="!multipleImages[1]" class="basic ui label">Choose Image</label>
+          <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,1)" id="b" style="display: none;"/>
+          <i class="trash icon delete-icon" *ngIf="multipleImages[1]">Delete</i>  
+        </div>
+
+        <div class="select-image">
+          <span *ngIf="product.product.images[2] && !previewImages[2]">
+            <img  [src]="'http://localhost:3000/'+product.product.images[2]" alt="">
+          </span>
+        <img  *ngIf="multipleImages[2] && previewImages[2]"[src]="previewImages[2]" alt="">
+        <label for="c" *ngIf="multipleImages[2]" class="basic ui label">Change Image</label>
+        <label for="c" *ngIf="!multipleImages[2]"  class="basic ui label">Choose Image</label>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,2)" id="c" style="display: none;"/>
+        <i class="trash icon delete-icon" *ngIf="multipleImages[2]">Delete</i>
+      </div>
+
+          <div class="select-image">
+            <span *ngIf="product.product.images[3] && !previewImages[3]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[3]" alt="">
+            </span>
+            
+            <img *ngIf="multipleImages[3] && previewImages[3]" [src]="previewImages[3]" alt="">
+            <label for="d" *ngIf="multipleImages[3]" class="basic ui label">Change Image</label>
+            <label for="d" *ngIf="!multipleImages[3]" class="basic ui label">Choose Image</label>
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,3)" id="d" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[3]">Delete</i>
+          </div>
+
+          <div class="select-image">
+            <span *ngIf="product.product.images[4] && !previewImages[4]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[4]" alt="">
+            </span>
+            <img *ngIf="multipleImages[4] && previewImages[4]" [src]="previewImages[4]" alt="">
+            <label for="e" *ngIf="multipleImages[4]" class="basic ui label">Change Image</label>
+            <label for="e" *ngIf="!multipleImages[4]" class="basic ui label">Choose Image</label>
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,4)" id="e" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[4]">Delete</i>
+          </div>
+
+          <div class="select-image">
+            <span *ngIf="product.product.images[5] && !previewImages[5]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[5]" alt="">
+            </span>
+            <img *ngIf="multipleImages[5] && previewImages[5]" [src]="previewImages[5]" alt="">
+            <label for="f" *ngIf="multipleImages[5]" class="basic ui label">Change Image</label>
+            <label for="f" *ngIf="!multipleImages[5]" class="basic ui label">Choose Image</label>
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,5)" id="f" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[5]">Delete</i>
+          </div>
+          <div class="select-image">
+            <span *ngIf="product.product.images[6] && !previewImages[6]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[6]" alt="">
+            </span>
+            <img *ngIf="multipleImages[6] && previewImages[6]" [src]="previewImages[6]" alt="">
+            <label for="g" *ngIf="multipleImages[6]" class="basic ui label">Change Image</label>
+            <label for="g" *ngIf="!multipleImages[6]" class="basic ui label">Choose Image</label>
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,6)" id="g" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[6]">Delete</i>
+          </div>
+          <div class="select-image">
+            <span *ngIf="product.product.images[7] && !previewImages[7]">
+              <img  [src]="'http://localhost:3000/'+product.product.images[7]" alt="">
+            </span>
+            <img *ngIf="multipleImages[7] && previewImages[7]" [src]="previewImages[7]" alt="">
+            <label for="h" *ngIf="multipleImages[7]" class="basic ui label">Change Image</label>
+            <label for="h" *ngIf="!multipleImages[7]" class="basic ui label">Choose Image</label>
+            <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event,7)" id="h" style="display: none;"/>
+            <i class="trash icon delete-icon" *ngIf="multipleImages[7]">Delete</i>
+          </div> -->
+        <br>
+    </div>
+        <div>
+          <button class="ui teal button" type="submit">Edit Product</button>
+        </div>
+    </form>
+    </div>
+

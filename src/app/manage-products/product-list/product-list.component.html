@@ -1,0 +1,33 @@
+<div class="manage-products">
+    <a class="ui teal button add-button" routerLink="./add-product">
+        <i class="add icon"></i> Add Product
+    </a>
+<ng-container *ngFor="let product of products.products">
+    <div class="product">
+        <div class="img-name">
+            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.images[0]" alt="image" srcset="">
+            <h5>{{product.name}}</h5>
+        </div>
+        
+            <div>
+                <h3>Price</h3>
+                <h5>{{product.price | currency}}</h5>
+            </div>
+            <div>
+                <h3>
+                    Quantity
+                </h3>
+                <h5>{{product.quantity}}</h5>
+            </div>
+        
+        <div class="icon-buttons">
+            <a class="tiny ui yellow button" [routerLink]="['./edit-product']" [state]="{id:product._id}">
+                <i class="pencil icon"></i> Edit
+            </a>
+            <a class="tiny ui red button" (click)="deleteProduct(product._id)">
+                <i class="trash icon"></i> Delete
+            </a>
+        </div>
+    </div>
+</ng-container>
+</div>

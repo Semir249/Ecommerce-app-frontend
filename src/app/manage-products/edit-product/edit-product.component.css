@@ -1,0 +1,24 @@
+.add-product{
+    width:50%;
+    margin: auto;
+    border:1px solid teal;
+    border-radius: 20px;
+    padding:2%;
+}
+
+.select-image{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2% 5%;
+}
+
+.select-image img{
+    width: 100px;
+    height: 50px;
+}
+
+.delete-icon{
+    color: red;
+    cursor: pointer;
+}

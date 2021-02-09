@@ -1,0 +1,115 @@
+<div *ngIf="!signupSuccess && !resetSuccess" class="ui dimmer visible active" (click)="onClose()">
+    <div (click)="$event.stopPropagation()" 
+        [@openClose]="isOpen ? 'open' : 'closed'" 
+        class="ui tiny modal visible active mod">
+        <i class="close icon" (click)="onClose()"></i>
+        <div class="header" style="text-align: center;">
+          {{ formHeader }}
+        </div>
+        <form [formGroup]="isOpen ? loginForm:signupForm" class="ui form login-form" (ngSubmit)="isOpen?loginSubmit():signupSubmit()">
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('email')" placeholder="test@example.com"
+                        label="Email" inputType="email"></app-input>
+          </div>
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('username')" placeholder="username"
+                        label="Username" inputType="text"></app-input>
+          </div>
+          <div *ngIf="isOpen && !reset" class="field">
+            <app-input [control]="loginForm.get('usernameemail')" placeholder="Enter username or email"
+                      label="Username or Email" inputType="text"></app-input>
+          </div>
+          <div *ngIf="isOpen && reset" class="field">
+            <app-input [control]="loginForm.get('usernameemail')" placeholder="abc@example.com"
+                      label="Enter your email you registered with" inputType="email"></app-input>
+          </div>
+          <div class="field" *ngIf="!reset">
+            <app-input [control]="isOpen?loginForm.get('password'):signupForm.get('password')" placeholder="Password"
+                      label="Password" inputType="password"></app-input>
+          </div>
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('confirmpassword')" placeholder="confirm password"
+                        label="Confirm password" inputType="password"></app-input>
+          </div>
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('birthday')" placeholder="Date of birth"
+                        label="Date of birth" inputType="date"></app-input>
+          </div>
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('location')" placeholder="Enter your current addresss"
+                        label="Addresss" inputType="text"></app-input>
+          </div>
+          <div *ngIf="!isOpen" class="field">
+            <app-input [control]="signupForm.get('zipcode')" placeholder="zipcode"
+                        label="Zipcode" inputType="text"></app-input>
+          </div>
+          <div *ngIf="showErrors() && isOpen" style="color: red;">
+            <small *ngIf="loginForm.errors.invalidCredentials">
+                {{ errorLogin }}
+            </small>
+            <small *ngIf="loginForm.errors.invalidEmail">
+              please enter a valid email
+            </small>
+          </div>
+          <div *ngIf="showSignupErrors() && !isOpen" style="color: red;">
+            <small *ngIf="signupForm.errors.invalidCredentials">
+              {{ errorSignup }}
+            </small>
+          </div>
+          <div *ngIf="signupForm.controls.confirmpassword.touched &&
+          signupForm.controls.confirmpassword.dirty && !isOpen" style="color: red;">
+          <ng-container *ngIf="signupForm.errors">
+        <small *ngIf="signupForm.errors.passwordsDontMatch">
+          Passwords should match
+        </small>
+        
+      </ng-container>
+        </div>
+          
+          <div *ngIf="!reset"class="submit-button">
+              <button class="ui teal button" type="submit">{{ buttonName }}</button>
+          </div>
+          <div *ngIf="reset"class="submit-button">
+            <button class="ui teal button" (click)="resetPassword()">Reset password</button>
+          </div>
+          <div *ngIf="isOpen && !reset" class="reset-link" (click)="$event.preventDefault();reset=true;">
+            Forgot password?
+          </div>
+          <span *ngIf="reset"><a href=""(click)="$event.preventDefault;reset=false">Click here to login</a></span>
+          <span *ngIf="!reset"><a href=""(click)="toggle($event)">{{ linkName }}</a></span>
+          </form>
+        
+    </div>
+</div>
+
+<div *ngIf="signupSuccess && !resetSuccess" class="ui dimmer visible active" (click)="onClose()">
+  <div (click)="$event.stopPropagation()" class="ui modal visible active">
+      <i class="close icon" (click)="onClose()"></i>
+      <div class="header">
+          Success
+      </div>
+      <div class="content">
+          <h1>Sign up complete</h1>
+      </div>
+      <div class="actions">
+        <ng-content select="[modalFooter]"></ng-content>
+      </div>
+      
+  </div>
+</div>
+
+<div *ngIf="resetSuccess" class="ui dimmer visible active" (click)="onClose()">
+  <div (click)="$event.stopPropagation()" class="ui modal visible active">
+      <i class="close icon" (click)="onClose()"></i>
+      <div class="header">
+          Reset password
+      </div>
+      <div class="content">
+          <h4>An link has been sent to your mail to reset your password.</h4>
+      </div>
+      <div class="actions">
+        <ng-content select="[modalFooter]"></ng-content>
+      </div>
+      
+  </div>
+</div>

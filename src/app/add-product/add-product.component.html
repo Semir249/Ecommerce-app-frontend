@@ -1,0 +1,56 @@
+
+<div class="add-product">
+<form [formGroup]="addProductForm" class="ui form" (ngSubmit)="onMultipleSubmit()">
+    <div class="field">
+        <app-input [control]="addProductForm.get('name')"
+                    label="Product name" inputType="text"></app-input>
+    </div>
+    <div class="field">
+        <app-input [control]="addProductForm.get('price')"
+                    label="Product price" inputType="number"></app-input>
+    </div> 
+    <div class="field">
+        <app-input [control]="addProductForm.get('quantity')"
+                    label="Quantity" inputType="number"></app-input>
+    </div> 
+    <div class="field">
+        <app-input [control]="addProductForm.get('category')"
+                    label="Product category" inputType="text"></app-input>
+    </div>
+    <div class="field">
+        <app-input [control]="addProductForm.get('description')"
+                    label="Product description" controlType="textarea"></app-input>
+    </div> 
+    <div>
+        <h4>Images <span class="ui orange tiny header">(atleast 1 image is required *)</span></h4>     
+    <div>
+      <input type="file" name="images"  formArrayName="image" (change)="selectMultipleImage($event)" id="a"/>
+    </div>
+    <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="b"/>
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="c" />
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="d" />
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="e" />
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="f" />
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="g" />
+      </div>
+      <div>
+        <input type="file" name="images" formArrayName="image" (change)="selectMultipleImage($event)" id="h" />
+      </div>
+    <br>
+</div>
+    <div>
+      <button class="ui teal button" type="submit">Add Product</button>
+    </div>
+</form>
+</div>
