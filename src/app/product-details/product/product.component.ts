@@ -33,8 +33,8 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.productQuantity = Array(this.product.product.quantity).fill(0).map((x,i)=>i);
     for(let img of this.product.product.images){
-      this.imageObject.push({thumbImage:`https://ecommerce-app-semir.herokuapp.com/${img}`,
-      image:`https://ecommerce-app-semir.herokuapp.com/${img}`});
+      this.imageObject.push({thumbImage:`http://localhost:3000/${img}`,
+      image:`http://localhost:3000/${img}`});
     }
   }
 

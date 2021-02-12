@@ -5,7 +5,7 @@
 <ng-container *ngFor="let product of products.products">
     <div class="product">
         <div class="img-name">
-            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.images[0]" alt="image" srcset="">
+            <img [src]="'http://localhost:3000/'+product.images[0]" alt="image" srcset="">
             <h5>{{product.name}}</h5>
         </div>
         

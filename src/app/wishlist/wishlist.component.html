@@ -5,7 +5,7 @@
     <ng-container *ngFor="let product of products">
 
         <div class="cart">
-            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.product.images[0]" alt="image" srcset="">
+            <img [src]="'http://localhost:3000/'+product.product.images[0]" alt="image" srcset="">
             <div class="second-part">
                 <div class="ratings">
                 <ng-container *ngFor="let star of stars;">

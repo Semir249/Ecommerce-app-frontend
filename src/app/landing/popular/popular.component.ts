@@ -24,8 +24,8 @@ export class PopularComponent implements OnInit {
 
   ngOnInit(): void {
       for(let img of this.images){
-        this.imageObject.push({thumbImage:`https://ecommerce-app-semir.herokuapp.com/${img}`,
-        image:`https://ecommerce-app-semir.herokuapp.com/${img}`});
+        this.imageObject.push({thumbImage:`http://localhost:3000/${img}`,
+        image:`http://localhost:3000/${img}`});
       }
     }
 

@@ -12,7 +12,7 @@
     </div>
     <ng-container *ngFor="let item of cart.cart; let i=index">
         <div class="cart-item ui segment">
-            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+item.images[0]" alt="image" srcset="" class="cart-header-item">
+            <img [src]="'http://localhost:3000/'+item.images[0]" alt="image" srcset="" class="cart-header-item">
             <h2 class="cart-header-item">{{ item.name }}</h2>
             <h4 class="cart-header-item">{{ item.price | currency }}</h4>
             <div class="cart-quantity">
