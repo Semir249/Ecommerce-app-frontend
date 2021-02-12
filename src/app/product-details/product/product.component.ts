@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   constructor(private activatedroute:ActivatedRoute,private cartservice:CartService,private productservice:ProductService){
     activatedroute.data.subscribe((res:{product:ProductDetailsResponse})=>{
       this.product=res.product;
-    })
+    });
   }
 
   ngOnInit(): void {

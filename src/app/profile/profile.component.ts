@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.profile.profile.birthday);
     this.profileForm=new FormGroup({
       email:new FormControl(this.profile.profile.email,[Validators.required,Validators.email]),
       username:new FormControl(this.profile.profile.username,[Validators.required,Validators.maxLength(10),Validators.minLength(5)]),

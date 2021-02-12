@@ -1,0 +1,38 @@
+<div *ngIf="wishListEmpty" class="not-found">
+    <h1 class="ui header">Your wishlist is empty</h1>
+</div>
+<div class="products" *ngIf="products.length>0">
+    <ng-container *ngFor="let product of products">
+
+        <div class="cart">
+            <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.product.images[0]" alt="image" srcset="">
+            <div class="second-part">
+                <div class="ratings">
+                <ng-container *ngFor="let star of stars;">
+                    <app-stars [starId]="star" [rating]="product.product.ratings"
+                    
+                    ></app-stars>
+                  </ng-container>
+                  {{product.product.reviews.length}} ratings
+                    <i class="heart icon wish-icon" (click)="addToWishlist(product.product.name)"></i>
+                </div>
+                <h3><a class="product-link" [routerLink]="['/product', product.product._id]">{{product.product.name}}</a></h3>
+                <h3>{{product.price | currency}}</h3>
+                
+                    <button  class="ui teal basic button add-to-cart-icon"
+                     (click)="product.quantity>0 && addToCart(product.product._id)"
+                      [ngClass]="{ 'disabled' : product.product.quantity<=0 }">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <ng-container *ngIf="product.product.quantity>0">
+                            Add to cart
+                        </ng-container>
+                        <ng-container *ngIf="product.product.quantity<=0">
+                            Out of stock
+                        </ng-container>
+                    </button>
+                
+            </div>
+        </div>
+
+    </ng-container>
+</div>

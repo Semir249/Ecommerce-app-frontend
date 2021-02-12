@@ -22,7 +22,9 @@ import { OrderComponent } from './order/order.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ResetComponent } from './reset/reset.component';
-
+import { SearchComponent } from './search/search.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ResetComponent } from './reset/reset.component';
     OrderComponent,
     AddProductComponent,
     ReviewsComponent,
-    ResetComponent
+    ResetComponent,
+    SearchComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { ResetComponent } from './reset/reset.component';
     ProductDetailsModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

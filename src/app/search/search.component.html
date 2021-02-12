@@ -1,9 +1,8 @@
-<h1 class="ui horizontal divider header divide">
-    <i class="tag icon"></i>
-    Our Products
-</h1>
-<div class="products">
-    <ng-container *ngFor="let product of products.products,let i=index;">
+<div *ngIf="products.products.length<=0" class="not-found">
+    <h1 class="ui header">Opps product not found</h1>
+</div>
+<div class="products" *ngIf="products.products.length>0">
+    <ng-container *ngFor="let product of products.products">
 
         <div class="cart">
             <img [src]="'https://ecommerce-app-semir.herokuapp.com/'+product.images[0]" alt="image" srcset="">
@@ -15,11 +14,8 @@
                     ></app-stars>
                   </ng-container>
                   {{product.reviews.length}} ratings
-                  <i *ngIf="!product.isFavourite"class="heart outline icon wish-icon" (click)="addToWishlist(product._id,product.name,i)"></i>
-                    <i *ngIf="product.isFavourite"class="heart icon wish-icon" (click)="addToWishlist(product._id,product.name,i)"></i>
                 </div>
-                <h3><a class="product-link" [routerLink]="['/product', product._id]">{{product.name}}</a>
-                </h3>
+                <h3><a class="product-link" [routerLink]="['/product', product._id]">{{product.name}}</a></h3>
                 <h3>{{product.price | currency}}</h3>
                 
                     <button  class="ui teal basic button add-to-cart-icon"

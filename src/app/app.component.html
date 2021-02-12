@@ -26,14 +26,16 @@
       </a>
     </div>
     <div class="ui fluid category search search-div">
+    <form #searchForm="ngForm" (ngSubmit)="searchProduct()">
       <div class="ui fluid icon input">
-        <input type="text" placeholder="Search...">
-        <i class="circular search link icon"></i>
+        <input type="text" [(ngModel)]="search" name="search" placeholder="Search...">
+        <i class="circular search link icon" (click)="searchProduct()"></i>
       </div>
-    </div>
+  </form>
+  </div>
     <div class="icons-auth">
       
-        <i class="heart outline icon wish-icon"><small>wishlist</small></i>
+        <i class="heart outline icon wish-icon" (click)="goTowishList()"><small>wishlist</small></i>
         <a routerLink="/cart" (click)="open()"><i class="shopping cart  icon cart-icon"><small>cart</small></i></a>
         <ng-container *ngIf="loggedIn">
           <button class="ui teal button" (click)="logout()">Logout</button>

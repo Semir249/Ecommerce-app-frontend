@@ -9,16 +9,25 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class ProductsComponent implements OnInit {
 
-  products:ProductsResponse;
+  products;
   stars=[1,2,3,4,5];
   rating=0;
   hoverState=0;
   
-  constructor(private activatedRoute:ActivatedRoute,private cartservice:CartService) { }
-
-  ngOnInit(): void {
+  constructor(private activatedRoute:ActivatedRoute,private cartservice:CartService) {
     this.activatedRoute.data.subscribe((res:{products:ProductsResponse})=>{
       this.products=res.products;
+    });
+   }
+
+  ngOnInit(): void {
+    this.products.products=this.products.products.map(product=>{
+      if(product._id===localStorage.getItem(product.name)){
+        return {...product,isFavourite:true};
+      }
+      else{
+        return {...product,isFavourite:false};
+      }
     });
   }
 
@@ -40,6 +49,16 @@ export class ProductsComponent implements OnInit {
     .subscribe(res=>{
       console.log(res);
     });
+  }
+
+  addToWishlist(id:string,name:string,i:number){
+    if(localStorage.getItem(name)){
+      localStorage.removeItem(name);
+    }
+    else{
+      localStorage.setItem(name,id);
+    }
+    this.products.products[i].isFavourite=!this.products.products[i].isFavourite;
   }
 
 

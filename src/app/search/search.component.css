@@ -7,7 +7,7 @@
 
 .cart{
     margin: 2% 4%;
-    width: 320px;
+    width: 300px;
     height: 400px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -59,9 +59,7 @@ h3{
     margin-right: 2.5%;
 }
 
-.wish-icon{
-    color:red;
-    cursor: pointer;
-    margin-left: 5%;
-    font-size: 150%;
+.not-found{
+    width: 90;
+    margin-left: 2.5%;
 }

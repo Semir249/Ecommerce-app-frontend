@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './service/login.service';
-import { ProductService } from './service/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   sidenav=false;
   title = 'eccomerce-frontend';
-  
+  search='';
   show=false;
   loggedIn=false;
   admin=false;
+  wishlist=[];
   constructor(/*private productservice:ProductService,*/
-    private loginservice:LoginService
+    private loginservice:LoginService,
+    private router:Router
     ){
+    
     }
   
   ngOnInit() {
@@ -37,6 +39,18 @@ export class AppComponent {
         }
       }
     });
+  }
+
+  searchProduct(){
+    
+    if(this.search===''){
+      console.log('search bar empty');
+      return;
+    }
+    else{
+      this.router.navigate(['search'], { queryParams: { product: this.search }});
+      
+    }
   }
 
   
@@ -60,6 +74,10 @@ export class AppComponent {
     if(!this.loggedIn){
       this.show=true;
     }
+  }
+
+  goTowishList(){
+    this.router.navigate(['wishlist']);
   }
 
   

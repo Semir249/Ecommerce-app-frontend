@@ -64,4 +64,8 @@ export class ProductService {
     return this.http.delete(`${this.host}/my-review/?id=${id}&reviewId=${reviewId}`);
   }
 
+  searchProduct(name:string){
+    return this.http.get<ProductsResponse>(`${this.host}/product/search?product=${name}`);
+  }
+
 }

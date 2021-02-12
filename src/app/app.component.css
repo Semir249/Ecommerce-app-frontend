@@ -25,6 +25,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; 
+}
+
+.wish{
+    position: absolute;
+    display: none;
+}
+
+.wish:hover{
+    display: block;
 }
 
 .icons-auth i{

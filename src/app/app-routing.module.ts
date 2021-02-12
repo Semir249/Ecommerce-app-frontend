@@ -18,6 +18,9 @@ import { ManageProductsModule } from './manage-products/manage-products.module';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewResolverService } from './reviews/review-resolver.service';
 import { ResetComponent } from './reset/reset.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResolverService } from './search/search-resolver.service';
+import { WishlistComponent } from './wishlist/wishlist.component';
 const routes: Routes = [{
   path:'',
   loadChildren:()=>import('./landing/landing.module').then(mod=>mod.LandingModule),
@@ -26,7 +29,8 @@ const routes: Routes = [{
 {
    path: 'product/:id',
   component:ProductComponent,
-  resolve:{product:ProductDetailsResolverService}
+  resolve:{product:ProductDetailsResolverService},
+  runGuardsAndResolvers:'pathParamsChange'
 },
 {
   path:'cart',
@@ -68,6 +72,15 @@ component:NewPasswordComponent
   path:'manage-products',
   canActivate:[AuthGuard],
   loadChildren:()=>import('./manage-products/manage-products.module').then(mod=>mod.ManageProductsModule)
+},
+{
+  path:'search',
+  component:SearchComponent,
+  resolve:{products:SearchResolverService},
+  runGuardsAndResolvers:'paramsOrQueryParamsChange'
+},{
+  path:'wishlist',
+  component:WishlistComponent
 }
 ];
 @NgModule({
